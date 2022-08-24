@@ -1,0 +1,1 @@
+pip install zbar pillow flask pyside6

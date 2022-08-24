@@ -1,0 +1,1 @@
+CREATE TABLE merchandise (id INTEGER PRIMARY KEY, barcode CHAR(20) UNIQUE NOT NULL, desc TEXT, price REAL);

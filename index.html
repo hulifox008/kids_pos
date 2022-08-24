@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=2.0">
+<script src="static/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+ <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" onchange="image_changed(event)">
+
+</body>
+</html>
+
+<script>
+function image_changed(event) {
+    var fd = new FormData();
+//    var files = $('#image-input')[0].files;
+//    if(files.length > 0) {
+
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("image-input").files[0]);
+
+        fd.append('file', document.getElementById("image-input").files[0]);
+
+        $.ajax({
+            url:'/image_upload',
+            type:'post',
+            data:fd,
+            contentType:false,
+            processData:false,
+            success:function(response) {
+                console.log("Success");
+            },
+        });
+ //   }
+
+}
+</script>
