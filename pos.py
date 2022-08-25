@@ -18,11 +18,20 @@ class MyWidget(QtWidgets.QWidget):
 
         self.text = QtWidgets.QLabel("Hello World",
                                      alignment=QtCore.Qt.AlignCenter)
+        self.text.setFont(font)
 
-        self.hlayout = QtWidgets.QHBoxLayout(self)
-        self.hlayout.addWidget(self.text)
-        self.hlayout.addWidget(self.button)
 
+        self.glayout = QtWidgets.QGridLayout(self)
+        self.glayout.addWidget(self.text, 0, 0, QtCore.Qt.AlignCenter)        
+        self.glayout.setRowStretch(0, 80)
+        self.glayout.setRowStretch(1, 20)
+        self.glayout.addWidget(self.button, 1, 1, QtCore.Qt.AlignCenter)
+        self.glayout.setColumnStretch(0, 80)
+        self.glayout.setColumnStretch(1, 20)
+
+        self.label_total = QtWidgets.QLabel("Total:")
+        self.label_total.setFont(font)
+        self.glayout.addWidget(self.label_total, 1, 0)
 
 
         self.button.clicked.connect(self.magic)
@@ -30,6 +39,7 @@ class MyWidget(QtWidgets.QWidget):
     @QtCore.Slot()
     def magic(self):
         self.text.setText(random.choice(self.hello))
+        self.label_total.setText("Total: $100.0")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
